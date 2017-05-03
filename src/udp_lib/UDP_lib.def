@@ -1,0 +1,12 @@
+LIBRARY UDP_lib
+
+EXPORTS 
+	init                @1
+	cleanUp             @2
+	getStatus           @3
+	isSocketExist       @4
+	createSocket        @5
+	submitTransfer      @6
+	getTransfer         @7
+	getReadyTransferNum @8
+	tryGetTransfer      @9
