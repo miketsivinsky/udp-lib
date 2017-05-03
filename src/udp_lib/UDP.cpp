@@ -2,6 +2,10 @@
 //------------------------------------------------------------------------------
 #include "UDP.h"
 
+#if defined(UDP_PRINT_DEBUG_INFO)
+	#include <Ws2tcpip.h>
+#endif
+
 #pragma comment(lib, "Ws2_32.lib")
 
 //------------------------------------------------------------------------------
@@ -743,7 +747,9 @@ TSocketPool::~TSocketPool()
     for(TPoolMap::iterator sock = getPool().begin(); sock != getPool().end(); ++sock) {
 		#if defined(UDP_PRINT_DEBUG_INFO)
 			in_addr inAddr; inAddr.S_un.S_addr = int32_t(sock->first >> 32);
-			printf("[INFO] [cleanPool] Socket deleted. HostAddr: %s, Port: %d\n",inet_ntoa(inAddr),uint32_t(sock->first & 0xFFFFFFFF));
+			TCHAR buf[256];
+			InetNtop(AF_INET,&inAddr,buf,sizeof(buf));
+			_tprintf(TEXT("[INFO] [cleanPool] Socket deleted. HostAddr: %s, Port: %d\n"),buf,uint32_t(sock->first & 0xFFFFFFFF));
 		#endif
         delete sock->second;
     }

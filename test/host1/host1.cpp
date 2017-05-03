@@ -44,7 +44,7 @@
 #define TEST_SEQUENCE_GEN
 
 const int ProcessPriority      = REALTIME_PRIORITY_CLASS;
-const int MainThreadPriority   = THREAD_PRIORITY_NORMAL;
+const int MainThreadPriority   = THREAD_PRIORITY_HIGHEST;
 const int WorkerThreadPriority = THREAD_PRIORITY_NORMAL;  
 
 const unsigned BundleNum = 128;
@@ -95,7 +95,9 @@ int _tmain(int argc, TCHAR* argv[])
 	_tprintf(TEXT("--------------------------------------------\n"));
 
 	//---
-	const unsigned long HostAddr = inet_addr(HostAddrStr);
+	unsigned long HostAddr;
+
+	InetPton(AF_INET, argv[2], &HostAddr);
 	const UDP_LIB::TParams rxParams     = { PacketSize, PacketsInBuf, BundleNum, WorkerThreadPriority, Timeout, SocketBufSize, 0, 0, 0 }; 
 	const UDP_LIB::TDirection Direction = UDP_LIB::Receive;
 

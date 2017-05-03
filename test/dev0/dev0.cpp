@@ -67,12 +67,10 @@ int _tmain(int argc, TCHAR* argv[])
 	}
     
 	const unsigned PacketNum     = _ttoi(argv[1]);
-	char HostAddr[255]; CharToOem(argv[2],HostAddr);
 	const u_short Port           = _ttoi(argv[3]);
 	const unsigned PacketSize    = _ttoi(argv[4]);
 	const unsigned PacketGenType = _ttoi(argv[5]);
 	const unsigned TxDelay       = _ttoi(argv[6]);
-	char DevAddr[255]; CharToOem(argv[7],DevAddr);
 
 	_tprintf(TEXT("--------------------------------------------\n"));
 	_tprintf(TEXT("[INFO] [%s start]\n\n"),argv[0]);
@@ -132,8 +130,6 @@ int _tmain(int argc, TCHAR* argv[])
 		sockaddr_in sockDevAddr;
 		sockDevAddr.sin_family      = AF_INET;
 		InetPton(AF_INET, argv[7], &sockDevAddr.sin_addr.s_addr);
-		//sockDevAddr.sin_addr.s_addr = inet_addr(DevAddr);
-		//printf("[DEBUG] DevtAddr: 0x%08x\n", sockDevAddr.sin_addr.s_addr);
 		sockDevAddr.sin_port        = htons(Port);
 
 		#if 1
@@ -146,9 +142,6 @@ int _tmain(int argc, TCHAR* argv[])
 		sockaddr_in sockHostAddr;
 		sockHostAddr.sin_family      = AF_INET;
 		InetPton(AF_INET, argv[2], &sockHostAddr.sin_addr.s_addr);
-		//sockHostAddr.sin_addr.s_addr = inet_addr(HostAddr);
-		//printf("[DEBUG] HostAddr: 0x%08x\n", sockHostAddr.sin_addr.s_addr);
-
 		sockHostAddr.sin_port        = htons(Port);
 		uint8_t buf[MaxPacketSize];
 		uint32_t value = 0;

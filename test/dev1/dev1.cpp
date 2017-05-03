@@ -44,7 +44,7 @@
 #define TEST_SEQUENCE_GEN
 
 const int ProcessPriority      = HIGH_PRIORITY_CLASS;
-const int MainThreadPriority   = THREAD_PRIORITY_HIGHEST;  
+const int MainThreadPriority   = THREAD_PRIORITY_NORMAL;  
 const int WorkerThreadPriority = THREAD_PRIORITY_NORMAL;  
 
 const unsigned BundleNum    = 128;
@@ -80,13 +80,11 @@ int _tmain(int argc, TCHAR* argv[])
 
 	//---
 	const unsigned BufNum           = _ttoi(argv[1]);
-	char HostAddrStr[255]; CharToOem(argv[2],HostAddrStr);
 	const u_short Port              = _ttoi(argv[3]);
 	const unsigned PacketSize       = _ttoi(argv[4]);
 	const unsigned PacketsInBuf     = _ttoi(argv[5]);
 	const unsigned PacketGenType    = _ttoi(argv[6]);
 	const unsigned TxDelay          = _ttoi(argv[7]);
-	char PeerAddrStr[255]; CharToOem(argv[8],PeerAddrStr);
 
 	//---
 	_tprintf(TEXT("--------------------------------------------\n"));
@@ -102,9 +100,12 @@ int _tmain(int argc, TCHAR* argv[])
 	_tprintf(TEXT("--------------------------------------------\n"));
 
 	//---
-	const unsigned long HostAddr = inet_addr(HostAddrStr);
-	const unsigned long PeerAddr = inet_addr(PeerAddrStr);
-	const UDP_LIB::TParams txParams     = { PacketSize, PacketsInBuf, BundleNum, WorkerThreadPriority, Timeout, SocketBufSize, PeerAddr, Port, 0/*onTransferReady*/ }; 
+	unsigned long HostAddr;
+	unsigned long PeerAddr;
+
+	InetPton(AF_INET, argv[2], &HostAddr);
+	InetPton(AF_INET, argv[8], &PeerAddr);
+	const UDP_LIB::TParams txParams     = { PacketSize, PacketsInBuf, BundleNum, WorkerThreadPriority, Timeout, SocketBufSize, PeerAddr, Port, 0/*onTransferReady*/ };
 	const UDP_LIB::TDirection Direction = UDP_LIB::Transmit;
 
 	//---
@@ -207,14 +208,16 @@ bool typeInfo(unsigned nBuf, UDP_LIB::TStatus status, UDP_LIB::Transfer& transfe
 //------------------------------------------------------------------------------
 void printTransferInfo(const UDP_LIB::Transfer* transfer)
 {
+	const unsigned fmtWidth = 2*sizeof(void*);
+
 	_tprintf(TEXT("--- transfer ---\n"));
-	_tprintf(TEXT("bundleId:  %8d\n"),transfer->bundleId);
-	_tprintf(TEXT("direction: %8d\n"),transfer->direction);
-	_tprintf(TEXT("status:    %8d\n"),transfer->status);
-	_tprintf(TEXT("length:    %8d\n"),transfer->length);
-	_tprintf(TEXT("bufLength: %8d\n"),transfer->bufLength);
-	_tprintf(TEXT("buf:       %8x\n"),(unsigned)(transfer->buf));
-	_tprintf(TEXT("isStream:  %8d\n"),transfer->isStream);
+	_tprintf(TEXT("bundleId:  %*d\n"),fmtWidth,transfer->bundleId);
+	_tprintf(TEXT("direction: %*d\n"),fmtWidth,transfer->direction);
+	_tprintf(TEXT("status:    %*d\n"),fmtWidth,transfer->status);
+	_tprintf(TEXT("length:    %*d\n"),fmtWidth,transfer->length);
+	_tprintf(TEXT("bufLength: %*d\n"),fmtWidth,transfer->bufLength);
+	_tprintf(TEXT("buf:       %p\n"),transfer->buf);
+	_tprintf(TEXT("isStream:  %*d\n"),fmtWidth,transfer->isStream);
 }
 
 //------------------------------------------------------------------------------

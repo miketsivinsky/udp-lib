@@ -17,7 +17,7 @@
 #include "TQueue.h"
 #include "UDP_Defs.h"
 
-//#define UDP_SO_REUSEADDR
+#define UDP_SO_REUSEADDR
 
 #define CANCEL_IO_EX_SUPPORTED
 

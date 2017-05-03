@@ -65,8 +65,6 @@ int _tmain(int argc, TCHAR* argv[])
 	}
 
 	const unsigned PacketNum = _ttoi(argv[1]);
-	char HostAddr[255];
-	CharToOem(argv[2],HostAddr);
 	const u_short Port       = _ttoi(argv[3]);
 	const unsigned PacketSize = _ttoi(argv[4]);
 	const unsigned PacketGenType = _ttoi(argv[5]);
@@ -133,7 +131,7 @@ int _tmain(int argc, TCHAR* argv[])
 		#endif
 		sockaddr_in sockHostAddr;
 		sockHostAddr.sin_family      = AF_INET;
-		sockHostAddr.sin_addr.s_addr = inet_addr(HostAddr);
+		InetPton(AF_INET, argv[2], &sockHostAddr.sin_addr.s_addr);
 		sockHostAddr.sin_port        = htons(Port);
 
 		errCode = bind(sock,(SOCKADDR*)&sockHostAddr,sizeof(sockHostAddr));

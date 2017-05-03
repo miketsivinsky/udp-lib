@@ -20,10 +20,10 @@ set PeriskopNB_IP=192.168.10.2
 rem ****** common part
 set PacketSize=1472
 set PacketInBuf=64
-set PacketGenType=0
+set PacketGenType=1
 
 rem ****** tx part
-set TxBufNum=10100000
+set TxBufNum=1010000
 set TxHostIP=%CUDA_TestIP%
 set TxDelay=0
 set TxPeer=%PeriskopNB_IP%
@@ -55,11 +55,11 @@ if %use_udp_lib%==0 (
 		cmd.exe /C "start "netTestRx" srv\net_rx0.bat %RxPrg% %RxBufNum% %RxHostIP% %RxPort% %PacketSize% %PacketGenType%" 
 	)
 ) else (
-	if %useTx%==1 (
-		cmd.exe /C "start "netTestTx" srv\net_tx1.bat %TxPrg% %TxBufNum% %TxHostIP% %TxPort% %PacketSize% %PacketInBuf% %PacketGenType% %TxDelay% %TxPeer%" 
-	)
 	if %useRx%==1 (
 		cmd.exe /C "start "netTestRx" srv\net_rx1.bat %RxPrg% %RxBufNum% %RxHostIP% %RxPort% %PacketSize% %PacketInBuf% %PacketGenType%" 
+	)
+	if %useTx%==1 (
+		cmd.exe /C "start "netTestTx" srv\net_tx1.bat %TxPrg% %TxBufNum% %TxHostIP% %TxPort% %PacketSize% %PacketInBuf% %PacketGenType% %TxDelay% %TxPeer%" 
 	)
 )
 

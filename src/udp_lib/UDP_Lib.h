@@ -11,7 +11,7 @@
 
 #ifdef UDP_LIB_EXPORT
 	#define UDP_DLL_API __declspec(dllexport)
-	//#define UDP_DLL_API // TODO: this "empty" definition remove warn LNK4197 - fix this problem
+	//#define UDP_DLL_API // TODO: this "empty" definition remove warn LNK4197 - fix this problem, (!!!) doesn't work in debug config
 #else
     #define UDP_DLL_API __declspec(dllimport)
 #endif
