@@ -13,9 +13,9 @@ set MikeIntelIP=192.168.10.2
 set MikeTendaIP=192.168.10.3
 
 set CUDA_MainIP=192.168.0.54
-set CUDA_TestIP=192.168.10.1
+set CUDA_TestIP=192.168.10.2
 
-set PeriskopNB_IP=192.168.10.2
+set PeriskopNB_IP=192.168.10.1
 
 rem ****** common part
 set PacketSize=1472
