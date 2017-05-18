@@ -33,6 +33,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="ludp.cd" />
     <None Include="UDP_lib.def" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

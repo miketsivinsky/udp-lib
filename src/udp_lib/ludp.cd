@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="TSocketPacket" Collapsed="true">
+    <Position X="2.75" Y="3.75" Width="1.5" />
+    <InheritanceLine Type="WSAOVERLAPPED" FixedFromPoint="true">
+      <Path>
+        <Point X="3.5" Y="3.062" />
+        <Point X="3.5" Y="3.75" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AABIAACAAAAAAAAAAAABAAAAAgAAAggAAAgAAAAABEA=</HashCode>
+      <FileName>UDP.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TSocketPacketBundle" Collapsed="true">
+    <Position X="2.25" Y="5.25" Width="2.5" />
+    <AssociationLine Name="mPacketBundle" Type="TSocketPacket" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="3.5" Y="5.25" />
+        <Point X="3.5" Y="4.708" />
+        <Point X="3.5" Y="4.708" />
+        <Point X="3.5" Y="4.441" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.285" Y="0.564" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>QAAAAACAAAAQAAAAAAAAAAAAAAAAMgUAAAgAAAAABEA=</HashCode>
+      <FileName>UDP.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="mPacketBundle" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="TSocket">
+    <Position X="2.75" Y="6.5" Width="1.5" />
+    <Members>
+      <Method Name="~TSocket" Hidden="true" />
+      <Method Name="clearTransfer" Hidden="true" />
+      <Method Name="getBuf" Hidden="true" />
+      <Method Name="getBufLength" Hidden="true" />
+      <Method Name="getDir" Hidden="true" />
+      <Method Name="getEventArray" Hidden="true" />
+      <Method Name="getPacket" Hidden="true" />
+      <Method Name="getPeer" Hidden="true" />
+      <Method Name="getPeerLen" Hidden="true" />
+      <Method Name="getReadyTransferNum" Hidden="true" />
+      <Method Name="getTransfer" Hidden="true" />
+      <Method Name="getWrapper" Hidden="true" />
+      <Method Name="isStream" Hidden="true" />
+      <Field Name="mAppSem" Hidden="true" />
+      <Field Name="mDrvSem" Hidden="true" />
+      <Field Name="mParams" Hidden="true" />
+      <Field Name="mPeerAddr" Hidden="true" />
+      <Field Name="mWrapper" Hidden="true" />
+      <Method Name="onExec" Hidden="true" />
+      <Method Name="sendToReadyQueue" Hidden="true" />
+      <Method Name="sendToSubmitQueue" Hidden="true" />
+      <Method Name="socketTransfer" Hidden="true" />
+      <Method Name="start" Hidden="true" />
+      <Method Name="submitTransfer" Hidden="true" />
+      <Method Name="testSocketXmitParams" Hidden="true" />
+      <Method Name="tryGetTransfer" Hidden="true" />
+      <Method Name="TSocket" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <InheritanceLine Type="SU::TThreadExt" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="2" Y="7.062" />
+        <Point X="2.375" Y="7.062" />
+        <Point X="2.375" Y="7.062" />
+        <Point X="2.75" Y="7.062" />
+      </Path>
+    </InheritanceLine>
+    <AssociationLine Name="mBundleArray" Type="TSocketPacketBundle" ManuallyRouted="true" FixedToPoint="true">
+      <Path>
+        <Point X="3.5" Y="6.5" />
+        <Point X="3.5" Y="6.125" />
+        <Point X="3.5" Y="6.125" />
+        <Point X="3.5" Y="5.812" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="-2.1" Y="0.435" Height="0.182" Width="1.445" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AGAgDAEACAEARACwASAAAQABCAARIgCAAYQAAAAAhAI=</HashCode>
+      <FileName>UDP.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="mBundleArray" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="TSocketRx" Collapsed="true">
+    <Position X="4" Y="9.25" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AGAAAAAAAAIAAAIgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UDP.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TSocketTx" Collapsed="true">
+    <Position X="1.75" Y="9.25" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AGAAAAAAAAIAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UDP.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TSocketWrapper" Collapsed="true">
+    <Position X="2.75" Y="11" Width="1.5" />
+    <AssociationLine Name="mSocketRx" Type="TSocket">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.162" Y="2.539" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="mSocketTx" Type="TSocket">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.015" Y="2.529" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAQAIAAAAQAARDAQADQAAAAAAAAIAAEEAAAQAAAAAAA=</HashCode>
+      <FileName>UDP.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="mSocketRx" />
+      <Field Name="mSocketTx" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="TSocketPool">
+    <Position X="6.75" Y="6.5" Width="2" />
+    <NestedTypes>
+      <Typedef Name="TSocketPool::TPoolMap" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>UDP.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Typedef>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>UAIAAEBAAAAARCAQACAAAAAABAQABAYQAADQAAAABAA=</HashCode>
+      <FileName>UDP.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SU::TThreadExt" Collapsed="true">
+    <Position X="0.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IBAAAAAAAAEAAgAAAAAAEAAAQAACAAAAAAVQAAAAIEA=</HashCode>
+      <FileName>d:\Mike\projects\p\work\ludp\src\su_lib\SU.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="UDP_LIB::Transfer">
+    <Position X="14.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQABAACAgAAIAAAAEAAAAAAAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>UDP_Defs.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="UDP_LIB::TNetAddr">
+    <Position X="10" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAIAAAAAA=</HashCode>
+      <FileName>UDP_Defs.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="UDP_LIB::TParams">
+    <Position X="12" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAEAAAAAAAACAA4AAAAEAAAAAAAAiAAAAAAA=</HashCode>
+      <FileName>UDP_Defs.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Typedef Name="WSAOVERLAPPED" Collapsed="true">
+    <Position X="2.25" Y="2.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>c:\Program Files (x86)\Windows Kits\8.1\Include\um\WinSock2.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
