@@ -418,7 +418,7 @@ TSocketRx::TSocketRx(TSocketWrapper* wrapper, const TCHAR* threadName, const UDP
 		::setsockopt(getWrapper()->getSocket(),SOL_SOCKET,SO_RCVBUF,reinterpret_cast<char*>(&optValue),optLength);
 		#if defined(UDP_PRINT_DEBUG_INFO)
 			int errCode = ::getsockopt(getWrapper()->getSocket(),SOL_SOCKET,SO_RCVBUF,reinterpret_cast<char*>(&optValue),&optLength);
-			errCode = getsockopt(getWrapper()->getSocket(),SOL_SOCKET,SO_RCVBUF,(char*)&optValue,&optLength);
+			//errCode = getsockopt(getWrapper()->getSocket(),SOL_SOCKET,SO_RCVBUF,(char*)&optValue,&optLength);
 			if(errCode == 0) {
 				//_tprintf(TEXT("[INFO] [TSocket] %s, SO_RCVBUF: %8d\n"),threadName,optValue);
 			}
@@ -474,7 +474,7 @@ TSocketTx::TSocketTx(TSocketWrapper* wrapper, const TCHAR* threadName, const UDP
 		::setsockopt(getWrapper()->getSocket(),SOL_SOCKET,SO_SNDBUF,reinterpret_cast<char*>(&optValue),optLength);
 		#if defined(UDP_PRINT_DEBUG_INFO)
 			int errCode = ::getsockopt(getWrapper()->getSocket(),SOL_SOCKET,SO_SNDBUF,reinterpret_cast<char*>(&optValue),&optLength);
-			errCode = getsockopt(getWrapper()->getSocket(),SOL_SOCKET,SO_SNDBUF,(char*)&optValue,&optLength);
+			//errCode = getsockopt(getWrapper()->getSocket(),SOL_SOCKET,SO_SNDBUF,(char*)&optValue,&optLength);
 			if(errCode == 0) {
 				//_tprintf(TEXT("[INFO] [TSocket] %s, SO_SNDBUF: %8d\n"),threadName,optValue);
 			}

@@ -2,8 +2,8 @@
 
 rem ******  test config
 set use_udp_lib=1
-set useTx=1
 set useRx=0
+set useTx=1
 
 rem ****** IP list
 set LocalHost=127.0.0.1
@@ -27,12 +27,12 @@ set TxBufNum=1010000
 set TxHostIP=%CUDA_TestIP%
 set TxDelay=0
 set TxPeer=%PeriskopNB_IP%
-set TxPort=50000
+set TxPort=50012
 
 rem ****** rx part
 set RxBufNum=1000000
 set RxHostIP=%CUDA_TestIP%
-set RxPort=50000
+set RxPort=50012
 
 rem ********************************************
 
