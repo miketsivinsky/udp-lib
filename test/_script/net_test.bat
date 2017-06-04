@@ -1,37 +1,39 @@
 @echo off
 
 rem ******  test config
+set device_emulator=0
 set use_udp_lib=1
 set useRx=0
 set useTx=1
 
 rem ****** IP list
 set LocalHost=127.0.0.1
-
-set MikeMainIP=192.168.0.85
-set MikeIntelIP=192.168.10.2
-set MikeTendaIP=192.168.10.3
-
-set CUDA_MainIP=192.168.0.54
-set CUDA_TestIP=192.168.10.2
-
-set PeriskopNB_IP=192.168.10.1
+set HostIP=192.168.10.2
+set DeviceIP=192.168.10.1
 
 rem ****** common part
 set PacketSize=1472
 set PacketInBuf=64
 set PacketGenType=1
 
+rem ****** rx/tx part dependent from device_emulator mode
+if %device_emulator%==0 (
+	set TxHostIP=%HostIP%
+	set TxPeer=%DeviceIP%
+	set RxHostIP=%HostIP%
+) else (
+	set TxHostIP=%DeviceIP%
+	set TxPeer=%HostIP%
+	set RxHostIP=%DeviceIP%
+)
+
 rem ****** tx part
 set TxBufNum=1010000
-set TxHostIP=%CUDA_TestIP%
 set TxDelay=0
-set TxPeer=%PeriskopNB_IP%
 set TxPort=50012
 
 rem ****** rx part
 set RxBufNum=1000000
-set RxHostIP=%CUDA_TestIP%
 set RxPort=50012
 
 rem ********************************************
